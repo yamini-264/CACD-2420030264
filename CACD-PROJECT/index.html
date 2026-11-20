@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CyberSec Performance Analysis Console</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                CS
+            </div>
+
+            <div>
+                <h2>CyberSec</h2>
+                <span>Performance Console</span>
+            </div>
+
+        </div>
+
+
+        <div class="nav-title">
+            WORKSPACE
+        </div>
+
+        <nav>
+
+            <a href="#overview" class="active">
+                <span>▦</span>
+                Overview
+            </a>
+
+            <a href="#experiment">
+                <span>⚙</span>
+                Experiment
+            </a>
+
+            <a href="#dataset">
+                <span>▤</span>
+                Dataset
+            </a>
+
+            <a href="#performance">
+                <span>◈</span>
+                Performance
+            </a>
+
+            <a href="#resources">
+                <span>◉</span>
+                Resources
+            </a>
+
+            <a href="#results">
+                <span>▥</span>
+                Results
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-indicator">
+
+                <span class="online-dot"></span>
+
+                <div>
+                    <strong>Analysis Engine</strong>
+                    <small>Frontend Simulation</small>
+                </div>
+
+            </div>
+
+            <div class="sidebar-version">
+                v1.0.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- ================= TOP BAR ================= -->
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="breadcrumb">
+                    SECURITY ANALYTICS / PERFORMANCE
+                </div>
+
+                <h1>
+                    Password Security Analysis
+                </h1>
+
+                <p>
+                    High-performance experimental analysis and comparison
+                    of baseline and optimized hash-testing implementations.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="environment-badge">
+                    <span></span>
+                    DEMONSTRATION MODE
+                </div>
+
+                <button
+                    class="primary-button"
+                    onclick="runAnalysis()"
+                >
+                    ▶ Run Analysis
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= OVERVIEW ================= -->
+
+        <section id="overview">
+
+            <div class="section-heading">
+
+                <div>
+                    <span>EXECUTIVE OVERVIEW</span>
+                    <h2>Experiment Summary</h2>
+                </div>
+
+                <div class="timestamp" id="lastRun">
+                    Last run: Not executed
+                </div>
+
+            </div>
+
+
+            <div class="metric-grid">
+
+
+                <!-- Dataset -->
+
+                <div class="metric-card">
+
+                    <div class="metric-header">
+
+                        <span>DATASET SIZE</span>
+
+                        <div class="metric-icon blue">
+                            ▤
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="metric-value"
+                        id="overviewEntries"
+                    >
+                        1,000
+                    </div>
+
+                    <div class="metric-description">
+                        Candidate entries
+                    </div>
+
+                </div>
+
+
+                <!-- Basic -->
+
+                <div class="metric-card">
+
+                    <div class="metric-header">
+
+                        <span>BASELINE TIME</span>
+
+                        <div class="metric-icon orange">
+                            B
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="metric-value"
+                        id="overviewBasic"
+                    >
+                        1.84 s
+                    </div>
+
+                    <div class="metric-description">
+                        Sequential implementation
+                    </div>
+
+                </div>
+
+
+                <!-- Optimized -->
+
+                <div class="metric-card">
+
+                    <div class="metric-header">
+
+                        <span>OPTIMIZED TIME</span>
+
+                        <div class="metric-icon green">
+                            O
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="metric-value"
+                        id="overviewOptimized"
+                    >
+                        0.76 s
+                    </div>
+
+                    <div class="metric-description">
+                        Optimized implementation
+                    </div>
+
+                </div>
+
+
+                <!-- Speedup -->
+
+                <div class="metric-card">
+
+                    <div class="metric-header">
+
+                        <span>SPEEDUP</span>
+
+                        <div class="metric-icon purple">
+                            ×
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="metric-value"
+                        id="overviewSpeedup"
+                    >
+                        2.42×
+                    </div>
+
+                    <div class="metric-description">
+                        Relative execution speed
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECONDARY METRICS -->
+
+            <div class="secondary-grid">
+
+                <div class="secondary-card">
+
+                    <span>TIME REDUCTION</span>
+
+                    <strong id="timeReduction">
+                        58.7%
+                    </strong>
+
+                    <small>
+                        Compared with baseline
+                    </small>
+
+                </div>
+
+
+                <div class="secondary-card">
+
+                    <span>OPTIMIZED THROUGHPUT</span>
+
+                    <strong id="throughput">
+                        1,316 / sec
+                    </strong>
+
+                    <small>
+                        Candidates processed per second
+                    </small>
+
+                </div>
+
+
+                <div class="secondary-card">
+
+                    <span>PROCESSING WORKERS</span>
+
+                    <strong id="workersDisplay">
+                        4
+                    </strong>
+
+                    <small>
+                        Configured workers
+                    </small>
+
+                </div>
+
+
+                <div class="secondary-card">
+
+                    <span>EXPERIMENT STATUS</span>
+
+                    <strong class="status-text">
+                        READY
+                    </strong>
+
+                    <small>
+                        Waiting for analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EXPERIMENT INPUT ================= -->
+
+        <section
+            class="panel"
+            id="experiment"
+        >
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        EXPERIMENT CONFIGURATION
+                    </span>
+
+                    <h2>
+                        Enter Measurement Data
+                    </h2>
+
+                    <p>
+                        Enter the values measured from your implementations.
+                        Derived performance metrics will be calculated automatically.
+                    </p>
+
+                </div>
+
+                <div class="input-status">
+                    INPUT REQUIRED
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- Dataset -->
+
+                <div class="field">
+
+                    <label>
+                        Dataset Name
+                    </label>
+
+                    <input
+                        id="datasetName"
+                        type="text"
+                        value="dataset.txt"
+                    >
+
+                </div>
+
+
+                <!-- Entries -->
+
+                <div class="field">
+
+                    <label>
+                        Dataset Entries
+                    </label>
+
+                    <input
+                        id="entries"
+                        type="number"
+                        value="1000"
+                        min="1"
+                    >
+
+                </div>
+
+
+                <!-- Hash -->
+
+                <div class="field">
+
+                    <label>
+                        Hash Algorithm
+                    </label>
+
+                    <select id="hashAlgorithm">
+
+                        <option>SHA-256</option>
+                        <option>SHA-512</option>
+                        <option>SHA-1</option>
+                        <option>MD5</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Workers -->
+
+                <div class="field">
+
+                    <label>
+                        Optimized Workers
+                    </label>
+
+                    <input
+                        id="workers"
+                        type="number"
+                        value="4"
+                        min="1"
+                    >
+
+                </div>
+
+
+                <!-- Basic Time -->
+
+                <div class="field">
+
+                    <label>
+                        Basic Execution Time (s)
+                    </label>
+
+                    <input
+                        id="basicTimeInput"
+                        type="number"
+                        value="1.84"
+                        min="0.01"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <!-- Optimized Time -->
+
+                <div class="field">
+
+                    <label>
+                        Optimized Execution Time (s)
+                    </label>
+
+                    <input
+                        id="optimizedTimeInput"
+                        type="number"
+                        value="0.76"
+                        min="0.01"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <!-- Basic CPU -->
+
+                <div class="field">
+
+                    <label>
+                        Basic CPU Usage (%)
+                    </label>
+
+                    <input
+                        id="basicCpu"
+                        type="number"
+                        value="42"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+                <!-- Optimized CPU -->
+
+                <div class="field">
+
+                    <label>
+                        Optimized CPU Usage (%)
+                    </label>
+
+                    <input
+                        id="optimizedCpu"
+                        type="number"
+                        value="58"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+                <!-- Basic Memory -->
+
+                <div class="field">
+
+                    <label>
+                        Basic Memory Usage (%)
+                    </label>
+
+                    <input
+                        id="basicMemory"
+                        type="number"
+                        value="38"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+                <!-- Optimized Memory -->
+
+                <div class="field">
+
+                    <label>
+                        Optimized Memory Usage (%)
+                    </label>
+
+                    <input
+                        id="optimizedMemory"
+                        type="number"
+                        value="46"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+                <!-- Tested Candidates -->
+
+                <div class="field">
+
+                    <label>
+                        Tested Candidates
+                    </label>
+
+                    <input
+                        id="testedCandidates"
+                        type="number"
+                        value="1000"
+                        min="1"
+                    >
+
+                </div>
+
+
+                <!-- Experiment Runs -->
+
+                <div class="field">
+
+                    <label>
+                        Number of Runs
+                    </label>
+
+                    <input
+                        id="experimentRuns"
+                        type="number"
+                        value="5"
+                        min="1"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-footer">
+
+                <div class="input-note">
+                    <span>ⓘ</span>
+                    Use measurements collected from your local experiment.
+                </div>
+
+                <div>
+
+                    <button
+                        class="secondary-button"
+                        onclick="resetForm()"
+                    >
+                        Reset
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        onclick="runAnalysis()"
+                    >
+                        ▶ Analyze Experiment
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="success-alert"
+                id="successAlert"
+            >
+                ✓ Experiment analyzed successfully.
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= DATASET ================= -->
+
+        <section
+            class="panel"
+            id="dataset"
+        >
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        DATA SOURCE
+                    </span>
+
+                    <h2>
+                        Dataset Information
+                    </h2>
+
+                    <p>
+                        Configuration of the dataset used during the experiment.
+                    </p>
+
+                </div>
+
+                <div class="file-chip" id="fileChip">
+                    dataset.txt
+                </div>
+
+            </div>
+
+
+            <div class="dataset-container">
+
+                <div class="dataset-file-icon">
+                    TXT
+                </div>
+
+
+                <div class="dataset-main">
+
+                    <h3 id="datasetDisplay">
+                        dataset.txt
+                    </h3>
+
+                    <p>
+                        Local candidate dataset
+                    </p>
+
+                </div>
+
+
+                <div class="dataset-property">
+
+                    <span>ENTRIES</span>
+
+                    <strong id="datasetCount">
+                        1,000
+                    </strong>
+
+                </div>
+
+
+                <div class="dataset-property">
+
+                    <span>ALGORITHM</span>
+
+                    <strong id="algorithmDisplay">
+                        SHA-256
+                    </strong>
+
+                </div>
+
+
+                <div class="dataset-property">
+
+                    <span>RUNS</span>
+
+                    <strong id="runsDisplay">
+                        5
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= PERFORMANCE ================= -->
+
+        <section
+            class="analysis-grid"
+            id="performance"
+        >
+
+
+            <!-- Execution Chart -->
+
+            <div class="panel chart-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-kicker">
+                            PERFORMANCE ANALYSIS
+                        </span>
+
+                        <h2>
+                            Execution Time Comparison
+                        </h2>
+
+                        <p>
+                            Baseline versus optimized implementation.
+                        </p>
+
+                    </div>
+
+                    <span class="chart-unit">
+                        SECONDS
+                    </span>
+
+                </div>
+
+
+                <div class="bar-chart">
+
+                    <div class="chart-y">
+
+                        <span>2.0</span>
+                        <span>1.5</span>
+                        <span>1.0</span>
+                        <span>0.5</span>
+                        <span>0</span>
+
+                    </div>
+
+
+                    <div class="chart-area">
+
+                        <div class="horizontal h1"></div>
+                        <div class="horizontal h2"></div>
+                        <div class="horizontal h3"></div>
+                        <div class="horizontal h4"></div>
+
+
+                        <div class="bar-wrapper">
+
+                            <div class="bar-column">
+
+                                <div
+                                    class="bar baseline"
+                                    id="basicBar"
+                                >
+
+                                    <span id="basicBarText">
+                                        1.84s
+                                    </span>
+
+                                </div>
+
+                                <label>
+                                    Basic
+                                </label>
+
+                            </div>
+
+
+                            <div class="bar-column">
+
+                                <div
+                                    class="bar optimized"
+                                    id="optimizedBar"
+                                >
+
+                                    <span id="optimizedBarText">
+                                        0.76s
+                                    </span>
+
+                                </div>
+
+                                <label>
+                                    Optimized
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <span>
+                        <i class="orange"></i>
+                        Baseline implementation
+                    </span>
+
+                    <span>
+                        <i class="green"></i>
+                        Optimized implementation
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Resource Analysis -->
+
+            <div
+                class="panel resource-panel"
+                id="resources"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-kicker">
+                            SYSTEM RESOURCES
+                        </span>
+
+                        <h2>
+                            Resource Utilization
+                        </h2>
+
+                        <p>
+                            Recorded CPU and memory measurements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="resource-list">
+
+
+                    <div class="resource">
+
+                        <div class="resource-heading">
+
+                            <span>Basic CPU</span>
+
+                            <strong id="basicCpuDisplay">
+                                42%
+                            </strong>
+
+                        </div>
+
+                        <div class="resource-track">
+
+                            <div
+                                id="basicCpuBar"
+                                class="resource-value blue"
+                                style="width:42%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="resource">
+
+                        <div class="resource-heading">
+
+                            <span>Optimized CPU</span>
+
+                            <strong id="optimizedCpuDisplay">
+                                58%
+                            </strong>
+
+                        </div>
+
+                        <div class="resource-track">
+
+                            <div
+                                id="optimizedCpuBar"
+                                class="resource-value green"
+                                style="width:58%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="resource">
+
+                        <div class="resource-heading">
+
+                            <span>Basic Memory</span>
+
+                            <strong id="basicMemoryDisplay">
+                                38%
+                            </strong>
+
+                        </div>
+
+                        <div class="resource-track">
+
+                            <div
+                                id="basicMemoryBar"
+                                class="resource-value orange"
+                                style="width:38%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="resource">
+
+                        <div class="resource-heading">
+
+                            <span>Optimized Memory</span>
+
+                            <strong id="optimizedMemoryDisplay">
+                                46%
+                            </strong>
+
+                        </div>
+
+                        <div class="resource-track">
+
+                            <div
+                                id="optimizedMemoryBar"
+                                class="resource-value purple"
+                                style="width:46%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="resource-summary">
+
+                    <div class="summary-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Resource measurements recorded
+                        </strong>
+
+                        <p>
+                            Values represent the experiment configuration entered above.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= IMPLEMENTATION ================= -->
+
+        <section class="implementation-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span>IMPLEMENTATION ARCHITECTURE</span>
+
+                    <h2>
+                        Experiment Components
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="implementation-grid">
+
+
+                <div class="implementation-card">
+
+                    <div class="component-number">
+                        01
+                    </div>
+
+                    <div class="component-info">
+
+                        <span>
+                            BASELINE
+                        </span>
+
+                        <h3>
+                            Basic Hash Testing
+                        </h3>
+
+                        <p>
+                            Sequential candidate processing used as
+                            the baseline for performance comparison.
+                        </p>
+
+                        <code>
+                            basic.py
+                        </code>
+
+                    </div>
+
+                </div>
+
+
+                <div class="implementation-card">
+
+                    <div class="component-number green-number">
+                        02
+                    </div>
+
+                    <div class="component-info">
+
+                        <span>
+                            OPTIMIZED
+                        </span>
+
+                        <h3>
+                            Parallel Hash Testing
+                        </h3>
+
+                        <p>
+                            Optimized processing implementation used
+                            to evaluate execution performance.
+                        </p>
+
+                        <code>
+                            optimized.py
+                        </code>
+
+                    </div>
+
+                </div>
+
+
+                <div class="implementation-card">
+
+                    <div class="component-number purple-number">
+                        03
+                    </div>
+
+                    <div class="component-info">
+
+                        <span>
+                            ANALYTICS
+                        </span>
+
+                        <h3>
+                            Performance Analyzer
+                        </h3>
+
+                        <p>
+                            Calculates execution time, speedup,
+                            throughput and resource comparisons.
+                        </p>
+
+                        <code>
+                            results.py
+                        </code>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <section
+            class="panel results-panel"
+            id="results"
+        >
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        EXPERIMENT RESULTS
+                    </span>
+
+                    <h2>
+                        Performance Comparison
+                    </h2>
+
+                    <p>
+                        Consolidated results generated from the entered measurements.
+                    </p>
+
+                </div>
+
+                <span class="completed-badge">
+                    ● ANALYSIS READY
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>
+                            Metric
+                        </th>
+
+                        <th>
+                            Basic
+                        </th>
+
+                        <th>
+                            Optimized
+                        </th>
+
+                        <th>
+                            Derived Result
+                        </th>
+
+                        <th>
+                            Measurement
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr>
+
+                        <td>
+                            Execution Time
+                        </td>
+
+                        <td id="tableBasicTime">
+                            1.84 s
+                        </td>
+
+                        <td id="tableOptimizedTime">
+                            0.76 s
+                        </td>
+
+                        <td id="tableReduction">
+                            58.7% reduction
+                        </td>
+
+                        <td>
+                            <span class="badge green-badge">
+                                Recorded
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            CPU Usage
+                        </td>
+
+                        <td id="tableBasicCpu">
+                            42%
+                        </td>
+
+                        <td id="tableOptimizedCpu">
+                            58%
+                        </td>
+
+                        <td>
+                            Resource profile
+                        </td>
+
+                        <td>
+                            <span class="badge blue-badge">
+                                Recorded
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Memory Usage
+                        </td>
+
+                        <td id="tableBasicMemory">
+                            38%
+                        </td>
+
+                        <td id="tableOptimizedMemory">
+                            46%
+                        </td>
+
+                        <td>
+                            Resource profile
+                        </td>
+
+                        <td>
+                            <span class="badge blue-badge">
+                                Recorded
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Throughput
+                        </td>
+
+                        <td id="tableBasicThroughput">
+                            543 / sec
+                        </td>
+
+                        <td id="tableOptimizedThroughput">
+                            1,316 / sec
+                        </td>
+
+                        <td id="tableThroughputGain">
+                            2.42×
+                        </td>
+
+                        <td>
+                            <span class="badge purple-badge">
+                                Calculated
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Processing Workers
+                        </td>
+
+                        <td>
+                            1
+                        </td>
+
+                        <td id="tableWorkers">
+                            4
+                        </td>
+
+                        <td>
+                            Parallel configuration
+                        </td>
+
+                        <td>
+                            <span class="badge purple-badge">
+                                Configured
+                            </span>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Dataset Entries
+                        </td>
+
+                        <td id="tableEntriesBasic">
+                            1,000
+                        </td>
+
+                        <td id="tableEntriesOptimized">
+                            1,000
+                        </td>
+
+                        <td>
+                            Same dataset
+                        </td>
+
+                        <td>
+                            <span class="badge gray-badge">
+                                Verified
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- Result highlight -->
+
+            <div class="result-highlight">
+
+                <div class="result-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        PERFORMANCE SUMMARY
+                    </span>
+
+                    <h3 id="summaryText">
+                        Optimized execution reduced the measured
+                        processing time by 58.7%.
+                    </h3>
+
+                    <p>
+                        This value is calculated from the experiment
+                        measurements entered above.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div>
+
+                <strong>
+                    CyberSec Performance Analysis Console
+                </strong>
+
+                <span>•</span>
+
+                Academic Project Prototype
+
+            </div>
+
+            <div>
+
+                Frontend Demonstration · v1.0.0
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
